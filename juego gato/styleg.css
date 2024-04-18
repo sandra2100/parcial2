@@ -1,0 +1,63 @@
+/* Estilos base */
+.timer {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .timer div {
+    display: inline-block;
+    padding: 10px;
+  }
+  
+  .turn-indicator {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .h1{
+    background-color: rgb(159, 88, 185);
+    padding: 20px;
+    padding: 800px 50px 20px 70px;
+    margin-bottom: 200px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 80px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+body {
+    background-color: rgb(95, 160, 160);
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%; /* Ancho máximo del contenido */
+    margin: 0 auto; /* Centrar el contenido */
+}
+
+/* Estilos para pantallas pequeñas (móviles) */
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 100%; /* Ocupar todo el ancho de la pantalla */
+    }
+}
+
+/* Estilos para pantallas medianas (tablets) */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .container {
+        width: 90%; /* Ancho un poco más reducido */
+    }
+}
+
+/* Estilos para pantallas grandes (escritorio) */
+@media only screen and (min-width: 1025px) {
+    .container {
+        width: 80%; /* Ancho máximo del contenido */
+    }
+}
+

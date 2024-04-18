@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tic Tac Toe</title>
+<link rel="stylesheet"  href="styleg.css">
+<style>
+    table {
+        border-collapse: collapse;
+        margin: 20px auto;
+    }
+    table, td {
+        border: 3px solid black;
+        width: 300px;
+        height: 100px;
+        text-align: center;
+        font-size: 24px;
+    }
+</style>
+</head>
+<body>
+    
+      
+<h1>Juego de Gato</h1>
+
+<div id="player-names">
+    <label for="player1">Nombre del jugador 1:</label>
+    <input type="text" id="player1" placeholder="Jugador 1">
+    <br>
+    <label for="player2">Nombre del jugador 2:</label>
+    <input type="text" id="player2" placeholder="Jugador 2">
+    <br>
+    <button onclick="startGame()">Comenzar Juego</button>
+  </div>
+  
+  
+<table id="gameBoard">
+    <tr>
+        <td onclick="cellClicked(this)"></td>
+        <td onclick="cellClicked(this)"></td>
+        <td onclick="cellClicked(this)"></td>
+    </tr>
+    <tr>
+        <td onclick="cellClicked(this)"></td>
+        <td onclick="cellClicked(this)"></td>
+        <td onclick="cellClicked(this)"></td>
+    </tr>
+    <tr>
+        <td onclick="cellClicked(this)"></td>
+        <td onclick="cellClicked(this)"></td>
+        <td onclick="cellClicked(this)"></td>
+    </tr>
+</table>
+
+
+
+<div id="cronometro">Tiempo transcurrido: 0 segundos</div>
+
+<script>
+
+    let player1 = "X";
+    var inicioCronometro;
+    var finCronometro;
+    var intervaloCronometro;
+    let currentPlayer = 1;
+    
+    function startGame() {
+  let player1Name = document.getElementById("player1").value || "Jugador 1";
+  let player2Name = document.getElementById("player2").value || "Jugador 2";
+  document.getElementById("player-names").style.display = "none";
+  document.getElementById("player-turn").innerText = "Turno del jugador: " + player1Name;
+  startTurnTimer();
+}
+
+    function iniciarCronometro() {
+        inicioCronometro = Date.now();
+        intervaloCronometro = setInterval(actualizarCronometro, 1000);
+    }
+
+    function detenerCronometro() {
+        finCronometro = Date.now();
+        clearInterval(intervaloCronometro);
+    }
+
+    function actualizarCronometro() {
+        var tiempoTranscurrido = Math.floor((Date.now() - inicioCronometro) / 1000);
+        document.getElementById("cronometro").textContent = "Tiempo transcurrido: " + tiempoTranscurrido + " segundos";
+    }
+    function cellClicked(cell) {
+        if (!cell.textContent) {
+            cell.textContent = player1;
+            checkWinner();
+            player1 = player1 === "X" ? "O" : "X";
+        }
+      function checkWinner() {
+    let cells = document.querySelectorAll("table td");
+    let symbols = [];
+    for (let cell of cells) {
+        symbols.push(cell.textContent);
+    }
+    const winConditions = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+    for (let condition of winConditions) {
+        if (symbols[condition[0]] && symbols[condition[0]] === symbols[condition[1]] && symbols[condition[1]] === symbols[condition[2]]) {
+            alert(`${symbols[condition[0]]} wins!`);
+            resetBoard();
+            return;
+        }
+    }
+    if (!symbols.includes("")) {
+        alert("nadie gana!");
+        resetBoard();
+    }
+}
+
+function resetBoard() {
+    let cells = document.querySelectorAll("table td");
+    for (let cell of cells) {
+        cell.textContent = "";
+    }  
+    }
+    function updatePlayerTurn() {
+  let playerName = currentPlayer === 1 ? document.getElementById("player1").value || "Jugador 1" : document.getElementById("player2").value || "Jugador 2";
+  document.getElementById("player-turn").innerText = "Turno del jugador: " + playerName;
+}
+    // Aquí deberías implementar la lógica para detectar el movimiento del jugador.
+    // Por ahora, vamos a simularlo con un clic en el documento.
+    document.addEventListener("player1", function() {
+        detenerCronometro();
+        alert("¡Movimiento detectado! Cronómetro detenido.");
+    });
+
+    iniciarCronometro();
+
+
+
+
+
+}
+</script>
+</body>
+</html>
+
